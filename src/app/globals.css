@@ -1,0 +1,136 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --brand-yellow: #f39c12;
+    --brand-yellow-dark: #d68910;
+    --brand-dark: #1e2432;
+    --brand-dark-footer: #161a23;
+  }
+
+  body {
+    @apply text-slate-800 bg-[#fbfcfd] antialiased selection:bg-amber-400 selection:text-slate-950;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    @apply font-bold tracking-tight text-slate-900;
+  }
+}
+
+/* Custom styled content container for sheet HTML content */
+.article-content {
+  color: #374151;
+  line-height: 1.75;
+  font-size: 1.05rem;
+}
+
+.article-content h1 {
+  font-size: 2.25rem;
+  line-height: 1.25;
+  margin-bottom: 1.25rem;
+  color: #111827;
+  font-weight: 800;
+  position: relative;
+  padding-bottom: 0.75rem;
+}
+
+.article-content h1::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 4px;
+  background-color: #f39c12;
+  border-radius: 2px;
+}
+
+.article-content h2 {
+  font-size: 1.6rem;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  color: #1f2937;
+  font-weight: 700;
+  border-left: 4px solid #f39c12;
+  padding-left: 0.75rem;
+}
+
+.article-content h3 {
+  font-size: 1.3rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  color: #1f2937;
+  font-weight: 600;
+}
+
+.article-content p {
+  margin-bottom: 1.25rem;
+}
+
+.article-content ul, .article-content ol {
+  margin-top: 1rem;
+  margin-bottom: 1.5rem;
+  padding-left: 1.5rem;
+}
+
+.article-content ul {
+  list-style-type: none;
+}
+
+.article-content ul li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.65rem;
+}
+
+.article-content ul li::before {
+  content: "✔";
+  position: absolute;
+  left: 0;
+  top: 0;
+  color: #f39c12;
+  font-weight: 900;
+  font-size: 0.9rem;
+}
+
+.article-content ol {
+  list-style-type: decimal;
+}
+
+.article-content ol li {
+  margin-bottom: 0.5rem;
+}
+
+.article-content a {
+  color: #d97706;
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  transition: color 0.2s ease;
+}
+
+.article-content a:hover {
+  color: #b45309;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(243, 156, 18, 0.4); }
+  50% { box-shadow: 0 0 0 10px rgba(243, 156, 18, 0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.pulse-phone {
+  animation: pulseGlow 2s infinite;
+}
