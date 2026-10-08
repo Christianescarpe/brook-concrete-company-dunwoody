@@ -7,13 +7,13 @@ import { getPageBySlug, COMPANY_INFO, extractH1AndContent } from '@/data/siteDat
 import { JsonLd, extractFaqsFromHtml } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
-  title: 'Contact Brook Concrete Company | Dunwoody, GA',
+  title: 'Contact Brook Concrete Company',
   description: 'Ready to start your concrete project? Contact Brook Concrete Company for a free estimate in Dunwoody, GA.',
   alternates: {
     canonical: 'https://www.concretecontractordunwoody.site/contact/',
   },
   openGraph: {
-    title: 'Contact Brook Concrete Company | Dunwoody, GA',
+    title: 'Contact Brook Concrete Company',
     description: 'Ready to start your concrete project? Contact Brook Concrete Company for a free estimate in Dunwoody, GA.',
     url: 'https://www.concretecontractordunwoody.site/contact/',
     type: 'website',

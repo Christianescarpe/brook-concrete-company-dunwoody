@@ -7,13 +7,13 @@ import LocationPageTemplate from '@/components/LocationPageTemplate';
 import { JsonLd, extractFaqsFromHtml } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
-  title: 'Concrete Contractor Service Areas | Brook Concrete',
+  title: 'Concrete Contractor Service Areas',
   description: 'Brook Concrete Company serves Dunwoody, Sandy Springs, Brookhaven, Chamblee, Doraville, Peachtree Corners, Norcross, Roswell, and Johns Creek, GA.',
   alternates: {
     canonical: 'https://www.concretecontractordunwoody.site/service-areas/',
   },
   openGraph: {
-    title: 'Concrete Contractor Service Areas | Brook Concrete',
+    title: 'Concrete Contractor Service Areas',
     description: 'Brook Concrete Company serves Dunwoody, Sandy Springs, Brookhaven, Chamblee, Doraville, Peachtree Corners, Norcross, Roswell, and Johns Creek, GA.',
     url: 'https://www.concretecontractordunwoody.site/service-areas/',
     type: 'website',

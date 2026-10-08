@@ -8,13 +8,13 @@ import { getImageForSlug } from '@/data/imageMap';
 import { JsonLd } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
-  title: 'Blog | Brook Concrete Dunwoody',
+  title: 'Blog',
   description: 'Articles and guides from Brook Concrete Company in Dunwoody, GA.',
   alternates: {
     canonical: 'https://www.concretecontractordunwoody.site/blog/',
   },
   openGraph: {
-    title: 'Blog | Brook Concrete Dunwoody',
+    title: 'Blog',
     description: 'Articles and guides from Brook Concrete Company in Dunwoody, GA.',
     url: 'https://www.concretecontractordunwoody.site/blog/',
     type: 'website',

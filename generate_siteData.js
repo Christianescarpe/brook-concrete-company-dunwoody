@@ -10,10 +10,15 @@ function normalizeSlug(slug) {
   return s;
 }
 
+function cleanSeoTitle(title) {
+  if (!title) return '';
+  return title.split('|')[0].trim();
+}
+
 const cleanedPages = pages.map(p => {
   return {
     pageTitle: p['Page Title'],
-    seoTitle: p['SEO Title'],
+    seoTitle: cleanSeoTitle(p['SEO Title']),
     metaDescription: p['Meta Description'],
     urlSlug: normalizeSlug(p['URL Slug']),
     htmlContent: p['Page Content (HTML)'],

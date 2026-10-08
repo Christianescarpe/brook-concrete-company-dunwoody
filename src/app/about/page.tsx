@@ -7,13 +7,13 @@ import { getPageBySlug, COMPANY_INFO, extractH1AndContent } from '@/data/siteDat
 import { JsonLd } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
-  title: 'About Brook Concrete Company | Dunwoody, GA',
+  title: 'About Brook Concrete Company',
   description: 'Brook Concrete Company is a Dunwoody, GA concrete contractor dedicated to building durable, good-looking concrete for homes and businesses.',
   alternates: {
     canonical: 'https://www.concretecontractordunwoody.site/about/',
   },
   openGraph: {
-    title: 'About Brook Concrete Company | Dunwoody, GA',
+    title: 'About Brook Concrete Company',
     description: 'Brook Concrete Company is a Dunwoody, GA concrete contractor dedicated to building durable, good-looking concrete for homes and businesses.',
     url: 'https://www.concretecontractordunwoody.site/about/',
     type: 'website',

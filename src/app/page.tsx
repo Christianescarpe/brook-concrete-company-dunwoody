@@ -16,13 +16,13 @@ import WhyChooseUs from '@/components/WhyChooseUs';
 import { JsonLd, extractFaqsFromHtml } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
-  title: 'Concrete Contractor Dunwoody GA | Brook Concrete Company',
+  title: 'Concrete Contractor Dunwoody GA',
   description: 'Brook Concrete Company is a Dunwoody, GA concrete contractor for driveways, patios, stamped concrete and repairs. Call for a free estimate.',
   alternates: {
     canonical: 'https://www.concretecontractordunwoody.site/',
   },
   openGraph: {
-    title: 'Concrete Contractor Dunwoody GA | Brook Concrete Company',
+    title: 'Concrete Contractor Dunwoody GA',
     description: 'Brook Concrete Company is a Dunwoody, GA concrete contractor for driveways, patios, stamped concrete and repairs. Call for a free estimate.',
     url: 'https://www.concretecontractordunwoody.site/',
     siteName: 'Brook Concrete Company',

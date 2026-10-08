@@ -7,8 +7,8 @@ import { JsonLd, BASE_BUSINESS_SCHEMA, WEBSITE_SCHEMA } from '@/components/Struc
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.concretecontractordunwoody.site'),
   title: {
-    default: 'Concrete Contractor Dunwoody GA | Brook Concrete Company',
-    template: '%s | Brook Concrete Company',
+    default: 'Concrete Contractor Dunwoody GA',
+    template: '%s',
   },
   description: 'Brook Concrete Company is a Dunwoody, GA concrete contractor for homeowners and businesses. We install and repair driveways, patios, walkways, retaining walls, slabs and commercial flatwork.',
   keywords: ['Concrete Contractor Dunwoody GA', 'Concrete Driveways Dunwoody', 'Concrete Patios', 'Stamped Concrete Dunwoody', 'Driveway Replacement Dunwoody'],
