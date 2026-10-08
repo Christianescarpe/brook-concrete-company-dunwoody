@@ -4,19 +4,64 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Phone, MapPin, HardHat } from 'lucide-react';
 import { getPageBySlug, COMPANY_INFO, extractH1AndContent } from '@/data/siteData';
+import { JsonLd, extractFaqsFromHtml } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'Contact Brook Concrete Company | Dunwoody, GA',
   description: 'Ready to start your concrete project? Contact Brook Concrete Company for a free estimate in Dunwoody, GA.',
+  alternates: {
+    canonical: 'https://www.concretecontractordunwoody.site/contact/',
+  },
+  openGraph: {
+    title: 'Contact Brook Concrete Company | Dunwoody, GA',
+    description: 'Ready to start your concrete project? Contact Brook Concrete Company for a free estimate in Dunwoody, GA.',
+    url: 'https://www.concretecontractordunwoody.site/contact/',
+    type: 'website',
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: 'https://www.concretecontractordunwoody.site/',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Contact Us',
+      item: 'https://www.concretecontractordunwoody.site/contact/',
+    },
+  ],
 };
 
 export default function ContactPage() {
   const page = getPageBySlug('/contact/');
   const { h1, contentWithoutH1 } = extractH1AndContent(page?.htmlContent || '');
   const displayH1 = h1 || 'Contact Brook Concrete Company in Dunwoody, GA';
+  const faqs = extractFaqsFromHtml(page?.htmlContent || '');
+
+  const faqSchema = faqs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(f => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.answer,
+      },
+    })),
+  } : null;
 
   return (
     <div className="bg-[#fbfcfd]">
+      <JsonLd schema={breadcrumbSchema} />
+      {faqSchema && <JsonLd schema={faqSchema} />}
       {/* Banner with H1 & Worker Silhouette */}
       <section className="relative bg-[#222933] text-white py-14 md:py-20 border-b border-gray-800 overflow-hidden">
         <div className="absolute right-0 bottom-0 w-80 md:w-96 h-[300px] opacity-15 pointer-events-none hidden md:block z-0 text-white select-none">

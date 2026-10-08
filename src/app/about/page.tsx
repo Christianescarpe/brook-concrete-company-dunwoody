@@ -4,10 +4,39 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { Phone, HardHat } from 'lucide-react';
 import { getPageBySlug, COMPANY_INFO, extractH1AndContent } from '@/data/siteData';
+import { JsonLd } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'About Brook Concrete Company | Dunwoody, GA',
   description: 'Brook Concrete Company is a Dunwoody, GA concrete contractor dedicated to building durable, good-looking concrete for homes and businesses.',
+  alternates: {
+    canonical: 'https://www.concretecontractordunwoody.site/about/',
+  },
+  openGraph: {
+    title: 'About Brook Concrete Company | Dunwoody, GA',
+    description: 'Brook Concrete Company is a Dunwoody, GA concrete contractor dedicated to building durable, good-looking concrete for homes and businesses.',
+    url: 'https://www.concretecontractordunwoody.site/about/',
+    type: 'website',
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: 'https://www.concretecontractordunwoody.site/',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'About Us',
+      item: 'https://www.concretecontractordunwoody.site/about/',
+    },
+  ],
 };
 
 export default function AboutPage() {
@@ -17,6 +46,7 @@ export default function AboutPage() {
 
   return (
     <div className="bg-[#fbfcfd]">
+      <JsonLd schema={breadcrumbSchema} />
       {/* 1. Header Banner with H1 & Worker Silhouette */}
       <section className="relative bg-[#222933] text-white py-14 md:py-20 border-b border-gray-800 overflow-hidden">
         <div className="absolute right-0 bottom-0 w-80 md:w-96 h-[300px] opacity-15 pointer-events-none hidden md:block z-0 text-white select-none">

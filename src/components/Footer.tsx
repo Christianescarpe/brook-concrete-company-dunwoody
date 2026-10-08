@@ -3,7 +3,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Phone, MapPin } from 'lucide-react';
 import { FacebookIcon, TwitterIcon, InstagramIcon, LinkedinIcon } from '@/components/SocialIcons';
-import { COMPANY_INFO, BLOGS_LIST, SERVICES_LIST } from '@/data/siteData';
+import { COMPANY_INFO, BLOGS_LIST, SERVICES_LIST, LOCATIONS_LIST } from '@/data/siteData';
 
 export default function Footer() {
   const recentPosts = BLOGS_LIST.slice(0, 3);
@@ -153,14 +153,24 @@ export default function Footer() {
 
         </div>
 
-        {/* Quick Links to Services from sheet */}
-        <div className="mt-12 pt-8 border-t border-gray-700/60 text-xs text-gray-400 flex flex-wrap gap-x-4 gap-y-2 items-center justify-center">
-          <span className="text-amber-400 font-bold uppercase tracking-wider">Services:</span>
-          {SERVICES_LIST.slice(0, 10).map((s) => (
-            <Link key={s.urlSlug} href={s.urlSlug} className="hover:text-amber-400 transition-colors">
-              {s.pageTitle}
-            </Link>
-          ))}
+        {/* Quick Links to Services & Service Areas */}
+        <div className="mt-12 pt-8 border-t border-gray-700/60 space-y-4 text-xs text-gray-400">
+          <div className="flex flex-wrap gap-x-4 gap-y-2 items-center justify-center">
+            <span className="text-amber-400 font-bold uppercase tracking-wider">Services:</span>
+            {SERVICES_LIST.map((s) => (
+              <Link key={s.urlSlug} href={s.urlSlug} className="hover:text-amber-400 transition-colors">
+                {s.pageTitle}
+              </Link>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-x-4 gap-y-2 items-center justify-center">
+            <span className="text-amber-400 font-bold uppercase tracking-wider">Service Areas:</span>
+            {LOCATIONS_LIST.map((l) => (
+              <Link key={l.urlSlug} href={l.urlSlug} className="hover:text-amber-400 transition-colors">
+                {l.pageTitle}
+              </Link>
+            ))}
+          </div>
         </div>
       </div>
 

@@ -6,6 +6,7 @@ import Image from 'next/image';
 import { Phone, ArrowLeft, ArrowRight, HardHat } from 'lucide-react';
 import { getPageBySlug, BLOGS_LIST, COMPANY_INFO, extractH1AndContent } from '@/data/siteData';
 import { getImageForSlug } from '@/data/imageMap';
+import { JsonLd, extractFaqsFromHtml } from '@/components/StructuredData';
 
 interface BlogPageProps {
   params: {
@@ -27,9 +28,21 @@ export function generateMetadata({ params }: BlogPageProps): Metadata {
     return { title: 'Article Not Found' };
   }
 
+  const canonicalUrl = `https://www.concretecontractordunwoody.site/blog/${params.slug}/`;
+
   return {
     title: post.seoTitle,
     description: post.metaDescription,
+    alternates: {
+      canonical: canonicalUrl,
+    },
+    openGraph: {
+      title: post.seoTitle,
+      description: post.metaDescription,
+      url: canonicalUrl,
+      type: 'article',
+      images: [{ url: getImageForSlug(slug) }],
+    },
   };
 }
 
@@ -43,12 +56,71 @@ export default function BlogPostPage({ params }: BlogPageProps) {
 
   const { h1, contentWithoutH1 } = extractH1AndContent(post.htmlContent);
   const displayH1 = h1 || post.pageTitle;
+  const canonicalUrl = `https://www.concretecontractordunwoody.site/blog/${params.slug}/`;
 
   const heroImage = getImageForSlug(slug);
   const otherPosts = BLOGS_LIST.filter(p => p.urlSlug !== slug);
+  const faqs = extractFaqsFromHtml(post.htmlContent);
+
+  const breadcrumbSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      {
+        '@type': 'ListItem',
+        position: 1,
+        name: 'Home',
+        item: 'https://www.concretecontractordunwoody.site/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 2,
+        name: 'Blog',
+        item: 'https://www.concretecontractordunwoody.site/blog/',
+      },
+      {
+        '@type': 'ListItem',
+        position: 3,
+        name: post.pageTitle,
+        item: canonicalUrl,
+      },
+    ],
+  };
+
+  const articleSchema = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.pageTitle,
+    description: post.metaDescription,
+    image: `https://www.concretecontractordunwoody.site${heroImage}`,
+    mainEntityOfPage: canonicalUrl,
+    publisher: {
+      '@id': 'https://www.concretecontractordunwoody.site/#business',
+    },
+    author: {
+      '@type': 'Organization',
+      name: 'Brook Concrete Company',
+      url: 'https://www.concretecontractordunwoody.site/',
+    },
+  };
+
+  const faqSchema = faqs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(f => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.answer,
+      },
+    })),
+  } : null;
 
   return (
     <div className="bg-[#fbfcfd]">
+      <JsonLd schema={[breadcrumbSchema, articleSchema]} />
+      {faqSchema && <JsonLd schema={faqSchema} />}
       {/* Banner with H1 & Worker Silhouette */}
       <section className="relative bg-[#222933] text-white py-14 md:py-20 border-b border-gray-800 overflow-hidden">
         <div className="absolute right-0 bottom-0 w-80 md:w-96 h-[300px] opacity-15 pointer-events-none hidden md:block z-0 text-white select-none">

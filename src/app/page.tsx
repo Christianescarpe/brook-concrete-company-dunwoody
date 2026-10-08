@@ -13,19 +13,46 @@ import {
 import { COMPANY_INFO, LOCATIONS_LIST, getPageBySlug, extractH1AndContent } from '@/data/siteData';
 import ProjectGallery from '@/components/ProjectGallery';
 import WhyChooseUs from '@/components/WhyChooseUs';
+import { JsonLd, extractFaqsFromHtml } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'Concrete Contractor Dunwoody GA | Brook Concrete Company',
   description: 'Brook Concrete Company is a Dunwoody, GA concrete contractor for driveways, patios, stamped concrete and repairs. Call for a free estimate.',
+  alternates: {
+    canonical: 'https://www.concretecontractordunwoody.site/',
+  },
+  openGraph: {
+    title: 'Concrete Contractor Dunwoody GA | Brook Concrete Company',
+    description: 'Brook Concrete Company is a Dunwoody, GA concrete contractor for driveways, patios, stamped concrete and repairs. Call for a free estimate.',
+    url: 'https://www.concretecontractordunwoody.site/',
+    siteName: 'Brook Concrete Company',
+    locale: 'en_US',
+    type: 'website',
+  },
 };
 
 export default function HomePage() {
   const homeData = getPageBySlug('/')!;
   const { h1, contentWithoutH1 } = extractH1AndContent(homeData?.htmlContent || '');
   const displayH1 = h1 || 'Concrete Contractor in Dunwoody, GA';
+  const faqs = extractFaqsFromHtml(homeData?.htmlContent || '');
+
+  const faqSchema = faqs.length > 0 ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map(f => ({
+      '@type': 'Question',
+      name: f.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: f.answer,
+      },
+    })),
+  } : null;
 
   return (
     <div className="bg-white text-slate-900">
+      {faqSchema && <JsonLd schema={faqSchema} />}
       {/* =========================================================================
           1. HERO SECTION (Dark charcoal background, double worker silhouette, single H1)
           ========================================================================= */}

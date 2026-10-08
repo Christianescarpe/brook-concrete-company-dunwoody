@@ -4,10 +4,39 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { Phone, HardHat } from 'lucide-react';
 import { getPageBySlug, COMPANY_INFO, extractH1AndContent } from '@/data/siteData';
+import { JsonLd } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'Concrete Project Gallery | Brook Concrete Dunwoody',
   description: 'See examples of the concrete work Brook Concrete Company completes for homes and businesses in Dunwoody, GA and nearby communities.',
+  alternates: {
+    canonical: 'https://www.concretecontractordunwoody.site/gallery/',
+  },
+  openGraph: {
+    title: 'Concrete Project Gallery | Brook Concrete Dunwoody',
+    description: 'See examples of the concrete work Brook Concrete Company completes for homes and businesses in Dunwoody, GA and nearby communities.',
+    url: 'https://www.concretecontractordunwoody.site/gallery/',
+    type: 'website',
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: 'https://www.concretecontractordunwoody.site/',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Project Gallery',
+      item: 'https://www.concretecontractordunwoody.site/gallery/',
+    },
+  ],
 };
 
 export default function GalleryPage() {
@@ -26,6 +55,7 @@ export default function GalleryPage() {
 
   return (
     <div className="bg-[#fbfcfd]">
+      <JsonLd schema={breadcrumbSchema} />
       {/* Banner with H1 & Worker Silhouette */}
       <section className="relative bg-[#222933] text-white py-14 md:py-20 border-b border-gray-800 overflow-hidden">
         <div className="absolute right-0 bottom-0 w-80 md:w-96 h-[300px] opacity-15 pointer-events-none hidden md:block z-0 text-white select-none">

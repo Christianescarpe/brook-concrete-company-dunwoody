@@ -5,15 +5,45 @@ import Image from 'next/image';
 import { ArrowRight, Phone, HardHat } from 'lucide-react';
 import { BLOGS_LIST, COMPANY_INFO } from '@/data/siteData';
 import { getImageForSlug } from '@/data/imageMap';
+import { JsonLd } from '@/components/StructuredData';
 
 export const metadata: Metadata = {
   title: 'Blog | Brook Concrete Dunwoody',
   description: 'Articles and guides from Brook Concrete Company in Dunwoody, GA.',
+  alternates: {
+    canonical: 'https://www.concretecontractordunwoody.site/blog/',
+  },
+  openGraph: {
+    title: 'Blog | Brook Concrete Dunwoody',
+    description: 'Articles and guides from Brook Concrete Company in Dunwoody, GA.',
+    url: 'https://www.concretecontractordunwoody.site/blog/',
+    type: 'website',
+  },
+};
+
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    {
+      '@type': 'ListItem',
+      position: 1,
+      name: 'Home',
+      item: 'https://www.concretecontractordunwoody.site/',
+    },
+    {
+      '@type': 'ListItem',
+      position: 2,
+      name: 'Blog',
+      item: 'https://www.concretecontractordunwoody.site/blog/',
+    },
+  ],
 };
 
 export default function BlogHubPage() {
   return (
     <div className="bg-[#fbfcfd]">
+      <JsonLd schema={breadcrumbSchema} />
       {/* Banner with Worker Silhouette */}
       <section className="relative bg-[#222933] text-white py-14 md:py-20 border-b border-gray-800 overflow-hidden">
         <div className="absolute right-0 bottom-0 w-80 md:w-96 h-[300px] opacity-15 pointer-events-none hidden md:block z-0 text-white select-none">
