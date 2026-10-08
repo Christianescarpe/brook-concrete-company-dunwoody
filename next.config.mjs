@@ -44,6 +44,19 @@ const nextConfig = {
         ],
       },
       {
+        source: '/sitemap_index.xml',
+        headers: [
+          {
+            key: 'Content-Type',
+            value: 'application/xml; charset=utf-8',
+          },
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=86400, stale-while-revalidate=86400',
+          },
+        ],
+      },
+      {
         source: '/(.*)',
         headers: [
           {
@@ -55,6 +68,14 @@ const nextConfig = {
             value: 'nosniff',
           },
         ],
+      },
+    ];
+  },
+  async rewrites() {
+    return [
+      {
+        source: '/sitemap_index.xml',
+        destination: '/sitemap.xml',
       },
     ];
   },
